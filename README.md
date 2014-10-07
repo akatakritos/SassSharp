@@ -15,3 +15,7 @@ Don't.
 Happy to receive code review, input, or patches. Just do the usual fork, clone,
 pull-request dance.
 
+
+## License
+
+MIT

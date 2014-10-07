@@ -27,7 +27,7 @@ namespace SassSharp.Tests
                 );
 
                 return rootNode;
-         
+
             }
         }
         [TestMethod]
@@ -50,6 +50,23 @@ namespace SassSharp.Tests
             Assert.AreEqual(2, results.Length);
             Assert.AreEqual<string>("p", results[0].Selector);
             Assert.AreEqual<string>("p a", results[1].Selector);
+        }
+
+        [TestMethod]
+        public void TestTranspiledSelectorsRetainDeclarations()
+        {
+            var t = new Transpiler();
+
+            var results = t.Transpile(TestData).ToArray();
+
+            var declarations = results[0].Declarations.ToArray();
+            Assert.AreEqual(2, declarations.Length);
+            Assert.AreEqual(new Declaration("color", "red"), declarations[0]);
+            Assert.AreEqual(new Declaration("font-weight", "bold"), declarations[1]);
+
+            declarations = results[1].Declarations.ToArray();
+            Assert.AreEqual(1, declarations.Length);
+            Assert.AreEqual(new Declaration("font-size", "12px"), declarations[0]);
         }
     }
 }

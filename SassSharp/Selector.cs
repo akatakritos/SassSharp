@@ -21,16 +21,6 @@ namespace SassSharp
             return new Selector(parent.Value + " " + this.Value);
         }
 
-        public static implicit operator String(Selector s)
-        {
-            return s.Value;
-        }
-
-        public static implicit operator Selector(string s)
-        {
-            return new Selector(s);
-        }
-
         public override string ToString()
         {
             return Value;
@@ -43,9 +33,6 @@ namespace SassSharp
 
         public bool Equals(Selector other)
         {
-            if (other == null)
-                return false;
-
             return this.Value == other.Value;
         }
 

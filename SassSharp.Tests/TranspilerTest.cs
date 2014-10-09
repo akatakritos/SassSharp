@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.Collections.Generic;
 using SassSharp;
 using SassSharp.Ast;
@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace SassSharp.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class TranspilerTest
     {
         public Node TestData
@@ -30,29 +30,29 @@ namespace SassSharp.Tests
 
             }
         }
-        [TestMethod]
+        [Test]
         public void TestCanTranspileSimpleData()
         {
             var t = new Transpiler();
 
             var results = t.Transpile(TestData);
 
-            Assert.IsInstanceOfType(results, typeof(IEnumerable<Rule>));
+            Assert.That(results, Is.InstanceOfType<IEnumerable<Rule>>());
         }
 
-        [TestMethod]
+        [Test]
         public void TestTranspiledSelectorsAreFlattened()
         {
             var t = new Transpiler();
 
             var results = t.Transpile(TestData).ToArray();
 
-            Assert.AreEqual(2, results.Length);
-            Assert.AreEqual<string>("p", results[0].Selector);
-            Assert.AreEqual<string>("p a", results[1].Selector);
+            Assert.That(results.Length, Is.EqualTo(2));
+            Assert.That(results[0].Selector.Value, Is.EqualTo("p"));
+            Assert.That(results[1].Selector.Value, Is.EqualTo("p a"));
         }
 
-        [TestMethod]
+        [Test]
         public void TestTranspiledSelectorsRetainDeclarations()
         {
             var t = new Transpiler();
@@ -60,13 +60,13 @@ namespace SassSharp.Tests
             var results = t.Transpile(TestData).ToArray();
 
             var declarations = results[0].Declarations.ToArray();
-            Assert.AreEqual(2, declarations.Length);
-            Assert.AreEqual(new Declaration("color", "red"), declarations[0]);
-            Assert.AreEqual(new Declaration("font-weight", "bold"), declarations[1]);
+            Assert.That(declarations.Length, Is.EqualTo(2));
+            Assert.That(declarations[0], Is.EqualTo(new Declaration("color", "red")));
+            Assert.That(declarations[1], Is.EqualTo(new Declaration("font-weight", "bold")));
 
             declarations = results[1].Declarations.ToArray();
-            Assert.AreEqual(1, declarations.Length);
-            Assert.AreEqual(new Declaration("font-size", "12px"), declarations[0]);
+            Assert.That(declarations.Length, Is.EqualTo(1));
+            Assert.That(declarations[0], Is.EqualTo(new Declaration("font-size", "12px")));
         }
     }
 }

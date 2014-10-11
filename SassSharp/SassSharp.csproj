@@ -41,7 +41,7 @@
   <ItemGroup>
     <Compile Include="Ast\Node.cs" />
     <Compile Include="Ast\SassSyntaxTree.cs" />
-    <Compile Include="Renderer.cs" />
+    <Compile Include="CssRenderer.cs" />
     <Compile Include="DeclarationSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Declaration.cs" />
@@ -51,7 +51,7 @@
     <Compile Include="Tokens\Token.cs" />
     <Compile Include="Tokens\Tokenizer.cs" />
     <Compile Include="Tokens\TokenizerException.cs" />
-    <Compile Include="Transpiler.cs" />
+    <Compile Include="CssRuleEmitter.cs" />
     <Compile Include="Ast\AstBuilder.cs" />
     <Compile Include="Ast\NodeBuilder.cs" />
   </ItemGroup>

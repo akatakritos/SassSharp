@@ -14,7 +14,7 @@ namespace SassSharp
         {
             var tokenizer = new Tokenizer();
             var builder = new AstBuilder(tokenizer.Process(sass));
-            var render = new Renderer();
+            var render = new CssRenderer();
 
             return render.Render(builder.Build());
         }

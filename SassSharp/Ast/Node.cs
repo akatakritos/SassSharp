@@ -31,5 +31,15 @@ namespace SassSharp.Ast
                 Children = new Node[] { }
             };
         }
+
+        public static Node Create(string selector, DeclarationSet declarations, IEnumerable<Node> children)
+        {
+            return new Node
+            {
+                Selector = new Selector(selector),
+                Declarations = declarations,
+                Children = children
+            };
+        }
     }
 }

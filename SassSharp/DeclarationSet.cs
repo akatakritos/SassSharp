@@ -27,6 +27,14 @@ namespace SassSharp
             return set;
         }
 
+        public static DeclarationSet FromList(IList<Declaration> declarations)
+        {
+            return new DeclarationSet()
+            {
+                declarations = declarations,
+            };
+        }
+
         IEnumerator<Declaration> IEnumerable<Declaration>.GetEnumerator()
         {
             return declarations.GetEnumerator();    

@@ -49,6 +49,8 @@
     <Compile Include="Tokens\Tokenizer.cs" />
     <Compile Include="Tokens\TokenizerException.cs" />
     <Compile Include="Transpiler.cs" />
+    <Compile Include="Ast\AstBuilder.cs" />
+    <Compile Include="Ast\NodeBuilder.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

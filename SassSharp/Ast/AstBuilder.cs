@@ -28,7 +28,7 @@ namespace SassSharp.Ast
         {
             foreach (var token in tokens)
             {
-                Console.WriteLine(token);
+                //Console.WriteLine(token);
                 if (token.Type == TokenType.OpenBrace)
                 {
                     nodeStack.Push(new NodeBuilder(tokenStack.Pop().Value));

@@ -11,7 +11,7 @@ namespace SassSharp.Tests
     [TestFixture]
     public class RendererTest
     {
-        public Node TestData
+        public SassSyntaxTree TestData
         {
             get
             {
@@ -27,8 +27,7 @@ namespace SassSharp.Tests
                     )
                 );
 
-                return rootNode;
-
+                return new SassSyntaxTree(new Node[] { rootNode });
             }
         }
 

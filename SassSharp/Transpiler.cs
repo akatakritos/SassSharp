@@ -9,9 +9,14 @@ namespace SassSharp
 {
     public class Transpiler
     {
-        public IEnumerable<Rule> Transpile(Node rootNode)
+        public IEnumerable<Rule> Transpile(SassSyntaxTree ast)
         {
-            return transpile(rootNode);
+            return transpile(ast.Children);
+        }
+
+        private IEnumerable<Rule> transpile(IEnumerable<Node> nodes)
+        {
+            return nodes.SelectMany((node) => transpile(node));
         }
 
         private IEnumerable<Rule> transpile(Node node)

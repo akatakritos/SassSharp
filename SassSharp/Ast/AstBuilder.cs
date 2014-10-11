@@ -24,7 +24,7 @@ namespace SassSharp.Ast
             this.nodeStack.Push(new NodeBuilder("")); //root node
         }
 
-        public Node Build()
+        public SassSyntaxTree Build()
         {
             foreach (var token in tokens)
             {
@@ -57,7 +57,8 @@ namespace SassSharp.Ast
 
             }
 
-            return CurrentNode.ToNode();
+            var rootNode = CurrentNode.ToNode();
+            return new SassSyntaxTree(rootNode.Children);
         }
     }
 }

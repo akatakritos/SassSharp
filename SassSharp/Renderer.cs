@@ -14,12 +14,12 @@ namespace SassSharp
 
         }
 
-        public string Render(Node root)
+        public string Render(SassSyntaxTree ast)
         {
             StringBuilder sb = new StringBuilder();
             Transpiler t = new Transpiler();
 
-            foreach(var rule in t.Transpile(root))
+            foreach(var rule in t.Transpile(ast))
             {
                 sb.Append(rule.Selector);
                 sb.Append('{');

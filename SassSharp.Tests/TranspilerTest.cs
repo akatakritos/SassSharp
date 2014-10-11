@@ -37,7 +37,7 @@ namespace SassSharp.Tests
 
             var results = t.Transpile(TestData);
 
-            Assert.That(results, Is.InstanceOfType<IEnumerable<Rule>>());
+            Assert.That(results, Is.InstanceOf<IEnumerable<Rule>>());
         }
 
         [Test]

@@ -21,7 +21,8 @@ namespace SassSharp
 
         private IEnumerable<Rule> emit(Node node)
         {
-            yield return new Rule(node.Selector, node.Declarations);
+            if (node.Declarations.Any())
+                yield return new Rule(node.Selector, node.Declarations);
 
             foreach (var child in node.Children)
             {

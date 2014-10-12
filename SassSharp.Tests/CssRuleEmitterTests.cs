@@ -88,5 +88,18 @@ namespace SassSharp.Tests
             Assert.That(css[0].Selector.Value, Is.EqualTo("p"));
             Assert.That(css[1].Selector.Value, Is.EqualTo("p.blue"));
         }
+
+        [Test]
+        public void EmptyRulesArentEmitted()
+        {
+            var ast = new FluentAstBuilder().Node("p", p =>
+            {
+
+            }).Build();
+
+            var css = new CssRuleEmitter().EmitRules(ast).ToArray();
+
+            Assert.That(css.Length, Is.EqualTo(0));
+        }
     }
 }

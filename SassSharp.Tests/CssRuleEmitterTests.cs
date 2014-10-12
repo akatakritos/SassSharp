@@ -101,5 +101,28 @@ namespace SassSharp.Tests
 
             Assert.That(css.Length, Is.EqualTo(0));
         }
+
+        [Test]
+        public void TestMultipleLevelsOfNestingCreatesCorrectSelector()
+        {
+            var ast = new FluentAstBuilder()
+            .Node("article", a =>
+            {
+                a.Child("p", p =>
+                {
+                    p.Child("span", s =>
+                    {
+                        s.Declaration("font-weight", "bold");
+                    });
+                });
+            }).Build();
+
+            var css = new CssRuleEmitter().EmitRules(ast).ToArray();
+
+
+            Assert.That(css.Length, Is.EqualTo(1));
+            Assert.That(css[0].Selector.Value, Is.EqualTo("article p span"));
+            Assert.That(css[0].Declarations.Single(), Is.EqualTo(new Declaration("font-weight", "bold")));
+        }
     }
 }

@@ -51,5 +51,31 @@ namespace SassSharp.Tests
 
             Assert.That(tokens, Is.EqualTo(expected));
         }
+
+        [Test]
+        public void TestTokenizerCanHandleImportStatments()
+        {
+            var tokenizer = new Tokenizer();
+
+            var input = @"p { color: red; }
+                          @import 'friend';";
+
+            var tokens = tokenizer.Process(input);
+
+            Assert.That(tokens.ToArray(), Is.EqualTo(new Token[]{
+                new Token(TokenType.Identifier, "p"),
+                new Token(TokenType.OpenBrace, "{"),
+                new Token(TokenType.Identifier, "color"),
+                new Token(TokenType.Colon, ":"),
+                new Token(TokenType.Identifier, "red"),
+                new Token(TokenType.SemiColon, ";"),
+                new Token(TokenType.CloseBrace, "}"),
+                new Token(TokenType.AtCommand, "@import"),
+                new Token(TokenType.BeginQuotedString, "'"),
+                new Token(TokenType.QuotedString, "friend"),
+                new Token(TokenType.EndQuotedString, "'"),
+                new Token(TokenType.SemiColon, ";")
+            }));
+        }
     }
 }

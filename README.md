@@ -9,13 +9,39 @@ of simple SASS operations.
 
 ## Usage
 
-Don't.
+Don't,
+
+At least not in anything that matters. It's pretty alpha
+
+For screwing around? Sure: here's the simple use case:
+
+```csharp
+var sass = @"
+  p {
+    font-size:12px;
+    color: red;
+
+    a {
+      font-weight : bold;
+    }
+  }";
+
+var css = new SassCompiler().Compile(sass);
+
+Assert.That(css, Is.EqualTo("p{font-size:12px;color:red;}p a{font-weight:bold;}"));
+```
 
 ## Contributing
 
 Happy to receive code review, input, or patches. Just do the usual fork, clone,
 pull-request dance.
 
+## Roadmap
+* ~~Nested selectors~~
+* Include files
+* Variables
+* Mixins
+* Functions
 
 ## License
 

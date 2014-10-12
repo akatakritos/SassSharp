@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ast\FluentAstBuilder.cs" />
     <Compile Include="Ast\Node.cs" />
     <Compile Include="Ast\SassSyntaxTree.cs" />
     <Compile Include="CssRenderer.cs" />

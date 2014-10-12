@@ -71,6 +71,9 @@ namespace SassSharp.Tokens
             if (c == ':')
                 return new ColonState();
 
+            if (c == '@')
+                return new AtCommandState();
+
             if (IdentifierState.IsIdentifierChar(c))
                 return new IdentifierState();
 
@@ -194,6 +197,28 @@ namespace SassSharp.Tokens
         public TokenType GetTokenType()
         {
             return TokenType.CloseBrace;
+        }
+    }
+
+    class AtCommandState : IState
+    {
+        public IState GetNext(char c)
+        {
+            if (char.IsLetter(c) || c == '-')
+                return null;
+
+            if (char.IsWhiteSpace(c))
+                return new WhitespaceState();
+
+            if (c == '{')
+                return new OpenBraceState();
+
+            throw new TokenizerException(c, "AtCommand");
+        }
+
+        public TokenType GetTokenType()
+        {
+            return TokenType.AtCommand;
         }
     }
 }

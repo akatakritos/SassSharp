@@ -14,5 +14,10 @@ namespace SassSharp.Ast
             this.Children = children;
         }
         public IEnumerable<Node> Children { get; private set; }
+
+        public static SassSyntaxTree Create(params Node[] nodes)
+        {
+            return new SassSyntaxTree(nodes);
+        }
     }
 }

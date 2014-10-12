@@ -68,5 +68,24 @@ namespace SassSharp.Tests
             Assert.That(declarations.Length, Is.EqualTo(1));
             Assert.That(declarations[0], Is.EqualTo(new Declaration("font-size", "12px")));
         }
+
+        [Test]
+        public void TestAmpersandGetsParentSelector()
+        {
+            var t = new CssRuleEmitter();
+            var ast = SassSyntaxTree.Create(
+                Node.Create("p",
+                    DeclarationSet.Create(new Declaration("color", "red")),
+                    Node.Create("&.blue",
+                        DeclarationSet.Create(new Declaration("color", "blue"))
+                    )
+                )
+            );
+
+            var css = t.EmitRules(ast).ToArray();
+            Assert.That(css.Length, Is.EqualTo(2));
+            Assert.That(css[0].Selector.Value, Is.EqualTo("p"));
+            Assert.That(css[1].Selector.Value, Is.EqualTo("p.blue"));
+        }
     }
 }

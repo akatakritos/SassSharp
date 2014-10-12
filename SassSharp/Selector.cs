@@ -18,6 +18,9 @@ namespace SassSharp
 
         public Selector DescendFrom(Selector parent)
         {
+            if (this.Value.StartsWith("&"))
+                return new Selector(parent.Value + this.Value.Substring(1));
+
             return new Selector(parent.Value + " " + this.Value);
         }
 

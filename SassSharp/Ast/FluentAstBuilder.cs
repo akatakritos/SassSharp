@@ -16,10 +16,7 @@ namespace SassSharp.Ast
 
         public FluentAstBuilder Node(string selector, Action<FluentNodeBuilder> nodeBuilder)
         {
-            var builder = new FluentNodeBuilder();
-            nodeBuilder(builder);
-
-            nodes.Add(Ast.Node.Create(selector, DeclarationSet.FromList(builder.Declarations), builder.Children));
+            nodes.Add(FluentNodeBuilder.CreateNode(selector, nodeBuilder));
 
             return this;
         }
@@ -34,20 +31,10 @@ namespace SassSharp.Ast
             private IList<Declaration> declarations;
             private IList<Node> children;
 
-            public FluentNodeBuilder()
+            public FluentNodeBuilder(IList<Declaration> declarations, IList<Node> children)
             {
-                declarations = new List<Declaration>();
-                children = new List<Node>();
-            }
-
-            public IList<Declaration> Declarations
-            {
-                get { return declarations; }
-            }
-
-            public IEnumerable<Node> Children
-            {
-                get { return children; }
+                this.declarations = declarations;
+                this.children = children;
             }
 
             public void Declaration(string property, string value)
@@ -57,10 +44,18 @@ namespace SassSharp.Ast
 
             public void Child(string selector, Action<FluentNodeBuilder> nodeBuilder)
             {
-                var builder = new FluentNodeBuilder();
+                children.Add(FluentNodeBuilder.CreateNode(selector, nodeBuilder));
+            }
+
+            public static Node CreateNode(string selector, Action<FluentNodeBuilder> nodeBuilder)
+            {
+                var declarations = new List<Declaration>();
+                var children = new List<Node>();
+                var builder = new FluentNodeBuilder(declarations, children);
+
                 nodeBuilder(builder);
 
-                children.Add(Ast.Node.Create(selector, DeclarationSet.FromList(builder.Declarations), builder.Children));
+                return Ast.Node.Create(selector, DeclarationSet.FromList(declarations), children);
             }
         }
     }

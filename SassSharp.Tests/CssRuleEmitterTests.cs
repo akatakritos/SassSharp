@@ -14,20 +14,17 @@ namespace SassSharp.Tests
         {
             get
             {
-                var rootNode = Node.Create("p",
-                    DeclarationSet.Create(
-                        new Declaration("color", "red"),
-                        new Declaration("font-weight", "bold")
-                    ),
-                    Node.Create("a",
-                        DeclarationSet.Create(
-                            new Declaration("font-size", "12px")
-                        )
-                    )
-                );
+                return new FluentAstBuilder()
+                    .Node("p", n =>
+                    {
+                        n.Declaration("color", "red");
+                        n.Declaration("font-weight", "bold");
 
-                return new SassSyntaxTree(new Node[] { rootNode });
-
+                        n.Child("a", c =>
+                        {
+                            c.Declaration("font-size", "12px");
+                        });
+                    }).Build();
             }
         }
         [Test]
@@ -73,14 +70,18 @@ namespace SassSharp.Tests
         public void TestAmpersandGetsParentSelector()
         {
             var t = new CssRuleEmitter();
-            var ast = SassSyntaxTree.Create(
-                Node.Create("p",
-                    DeclarationSet.Create(new Declaration("color", "red")),
-                    Node.Create("&.blue",
-                        DeclarationSet.Create(new Declaration("color", "blue"))
-                    )
-                )
-            );
+
+            var ast = new FluentAstBuilder()
+                .Node("p", n =>
+                {
+                    n.Declaration("color", "red");
+
+                    n.Child("&.blue", c =>
+                    {
+                        c.Declaration("color", "blue");
+                    });
+
+                }).Build();
 
             var css = t.EmitRules(ast).ToArray();
             Assert.That(css.Length, Is.EqualTo(2));

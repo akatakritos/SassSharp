@@ -74,6 +74,9 @@ namespace SassSharp.Tokens
             if (c == '@')
                 return new AtCommandState();
 
+            if (c == '\'' || c == '"')
+                return new BeginQuotedStringState(c);
+
             if (IdentifierState.IsIdentifierChar(c))
                 return new IdentifierState();
 
@@ -219,6 +222,76 @@ namespace SassSharp.Tokens
         public TokenType GetTokenType()
         {
             return TokenType.AtCommand;
+        }
+    }
+
+    class BeginQuotedStringState : IState
+    {
+        private char quoteSymbol;
+        public BeginQuotedStringState(char quoteSymbol)
+        {
+            this.quoteSymbol = quoteSymbol;
+        }
+
+        public IState GetNext(char c)
+        {
+            return new QuotedStringState(this.quoteSymbol);
+        }
+
+        public TokenType GetTokenType()
+        {
+            return TokenType.BeginQuotedString;
+        }
+    }
+
+    class QuotedStringState : IState
+    {
+        char quote;
+
+        public QuotedStringState(char quote)
+        {
+            this.quote = quote;
+        }
+
+        public IState GetNext(char c)
+        {
+            if (c != quote)
+                return null;
+
+            return new EndQuotedStringState(quote);
+        }
+
+        public TokenType GetTokenType()
+        {
+            return TokenType.QuotedString;
+        }
+    }
+
+    class EndQuotedStringState : IState
+    {
+        char quote;
+        public EndQuotedStringState(char quote)
+        {
+            this.quote = quote;
+        }
+
+        public IState GetNext(char c)
+        {
+            if (char.IsWhiteSpace(c))
+                return new WhitespaceState();
+
+            if (IdentifierState.IsIdentifierChar(c))
+                return new IdentifierState();
+
+            if (c == ';')
+                return new SemiColonState();
+
+            throw new TokenizerException(c, "EndQuotedString");
+        }
+
+        public TokenType GetTokenType()
+        {
+            return TokenType.EndQuotedString;
         }
     }
 }

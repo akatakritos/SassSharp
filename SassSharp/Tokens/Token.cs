@@ -57,5 +57,8 @@ namespace SassSharp.Tokens
         SemiColon,
         CloseBrace,
         AtCommand,
+        BeginQuotedString,
+        QuotedString,
+        EndQuotedString,
     }
 }

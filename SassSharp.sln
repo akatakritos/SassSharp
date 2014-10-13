@@ -5,7 +5,7 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SassSharp", "SassSharp\SassSharp.csproj", "{D6646068-4567-40B1-97CF-2FF511411F40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SassSharp.Tests", "SassSharp.Tests\SassSharp.Tests.csproj", "{40564A1C-D9E6-4A2A-8B3F-DED41E13A2ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SassSharp.Tests", "SassSharp.Tests\SassSharp.Tests.csproj", "{3536C02B-8A6A-4ABF-B05F-98209A0C6C04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{D6646068-4567-40B1-97CF-2FF511411F40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D6646068-4567-40B1-97CF-2FF511411F40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D6646068-4567-40B1-97CF-2FF511411F40}.Release|Any CPU.Build.0 = Release|Any CPU
-		{40564A1C-D9E6-4A2A-8B3F-DED41E13A2ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{40564A1C-D9E6-4A2A-8B3F-DED41E13A2ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{40564A1C-D9E6-4A2A-8B3F-DED41E13A2ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{40564A1C-D9E6-4A2A-8B3F-DED41E13A2ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3536C02B-8A6A-4ABF-B05F-98209A0C6C04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3536C02B-8A6A-4ABF-B05F-98209A0C6C04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3536C02B-8A6A-4ABF-B05F-98209A0C6C04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3536C02B-8A6A-4ABF-B05F-98209A0C6C04}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

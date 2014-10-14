@@ -14,9 +14,9 @@ namespace SassSharp.Ast
             nodes = new List<Node>();
         }
 
-        public FluentAstBuilder Node(string selector, Action<FluentNodeBuilder> nodeBuilder)
+        public FluentAstBuilder Node(string selector, Action<FluentNodeBuilder> setup)
         {
-            nodes.Add(FluentNodeBuilder.CreateNode(selector, nodeBuilder));
+            nodes.Add(FluentNodeBuilder.CreateNode(selector, setup));
 
             return this;
         }
@@ -42,18 +42,18 @@ namespace SassSharp.Ast
                 declarations.Add(new Declaration(property, value));
             }
 
-            public void Child(string selector, Action<FluentNodeBuilder> nodeBuilder)
+            public void Child(string selector, Action<FluentNodeBuilder> setup)
             {
-                children.Add(FluentNodeBuilder.CreateNode(selector, nodeBuilder));
+                children.Add(FluentNodeBuilder.CreateNode(selector, setup));
             }
 
-            public static Node CreateNode(string selector, Action<FluentNodeBuilder> nodeBuilder)
+            public static Node CreateNode(string selector, Action<FluentNodeBuilder> setup)
             {
                 var declarations = new List<Declaration>();
                 var children = new List<Node>();
                 var builder = new FluentNodeBuilder(declarations, children);
 
-                nodeBuilder(builder);
+                setup(builder);
 
                 return Ast.Node.Create(selector, DeclarationSet.FromList(declarations), children);
             }

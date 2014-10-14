@@ -30,22 +30,26 @@ namespace SassSharp.Tests
             }).Build();
 
             var tree = AstDump.Dump(ast);
-            Assert.That(tree, Is.EqualTo(
-@"AST
-|-- Rule: 'p'
-|   |-- Declarations
-|   |   |-- color: red
-|   |   `-- font-size: 12px
-|   `-- Children
-|       `-- Rule: 'a'
-|           |-- Declarations
-|           |   `-- font-weight: bold
-|           `-- Children
-`-- Rule: 'h1'
-    |-- Declarations
-    |   `-- font-size: 24px
-    `-- Children
-"));
+
+            // Use this rather than string literal because git checks out
+            // with \n instead of \r\n in ci
+            string expectedTree = new StringBuilder()
+                .AppendLine("AST")
+                .AppendLine("|-- Rule: 'p'")
+                .AppendLine("|   |-- Declarations")
+                .AppendLine("|   |   |-- color: red")
+                .AppendLine("|   |   `-- font-size: 12px")
+                .AppendLine("|   `-- Children")
+                .AppendLine("|       `-- Rule: 'a'")
+                .AppendLine("|           |-- Declarations")
+                .AppendLine("|           |   `-- font-weight: bold")
+                .AppendLine("|           `-- Children")
+                .AppendLine("`-- Rule: 'h1'")
+                .AppendLine("    |-- Declarations")
+                .AppendLine("    |   `-- font-size: 24px")
+                .AppendLine("    `-- Children").ToString();
+
+            Assert.That(tree, Is.EqualTo(expectedTree));
         }
     }
 }

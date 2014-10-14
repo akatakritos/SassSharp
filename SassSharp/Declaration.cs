@@ -25,13 +25,7 @@ namespace SassSharp
 
         public override int GetHashCode()
         {
-            unchecked
-            {
-                int hash = 13;
-                hash = hash * 7 + Property.GetHashCode();
-                hash = hash * 7 + Value.GetHashCode();
-                return hash;
-            }
+            return HashHelper.Hash(Property, Value);
         }
 
 

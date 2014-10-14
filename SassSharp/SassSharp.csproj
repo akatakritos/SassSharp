@@ -45,6 +45,7 @@
     <Compile Include="Ast\SassSyntaxTree.cs" />
     <Compile Include="CssRenderer.cs" />
     <Compile Include="DeclarationSet.cs" />
+    <Compile Include="HashHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Declaration.cs" />
     <Compile Include="Rule.cs" />

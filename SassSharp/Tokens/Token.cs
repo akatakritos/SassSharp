@@ -32,13 +32,7 @@ namespace SassSharp.Tokens
 
         public override int GetHashCode()
         {
-            unchecked
-            {
-                int hash = 17;
-                hash = hash * 23 + Type.GetHashCode();
-                hash = hash * 23 + Value.GetHashCode();
-                return hash;
-            }
+            return HashHelper.Hash(Type, Value);
         }
 
         public override string ToString()

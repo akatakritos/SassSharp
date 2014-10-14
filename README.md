@@ -1,6 +1,8 @@
 SassSharp - Simple SASS Compiler in C#
 =====================================
 
+[![Build status](https://ci.appveyor.com/api/projects/status/khfupgg1y4r48ia2?svg=true)](https://ci.appveyor.com/project/akatakritos/sasssharp)
+
 An AST based Sass compiler. I think ASTs are fascinating, and want to try my
 hand at using them.
 

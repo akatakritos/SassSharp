@@ -9,12 +9,12 @@ namespace SassSharp.Tokens
 {
     public class Tokenizer
     {
-        public IEnumerable<Token> Process(string input)
+        public IEnumerable<Token> Tokenize(string input)
         {
-            return process(input);
+            return tokenize(input);
         }
 
-        private IEnumerable<Token> process(string input)
+        private IEnumerable<Token> tokenize(string input)
         {
             int start = 0;
             IState currentState = new WhitespaceState();

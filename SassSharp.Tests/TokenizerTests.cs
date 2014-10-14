@@ -16,7 +16,7 @@ namespace SassSharp.Tests
         {
             var tokenizer = new Tokenizer();
 
-            var tokens = tokenizer.Process(@"
+            var tokens = tokenizer.Tokenize(@"
                 p {
                     font-size: 12px;
 

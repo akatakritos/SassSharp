@@ -11,23 +11,14 @@ namespace SassSharp.Tests
     [TestFixture]
     public class CssRendererTest
     {
-        public SassSyntaxTree SampleSassTree
+        private IEnumerable<Rule> sampleRules()
         {
-            get
-            {
-                return new FluentAstBuilder()
-                    .Node("p", n =>
-                    {
-                        n.Declaration("color", "red");
-                        n.Declaration("font-weight", "bold");
+            yield return new Rule(new Selector("p"), DeclarationSet.Create(
+                new Declaration("color", "red"),
+                new Declaration("font-weight", "bold")));
 
-                        n.Child("a", c =>
-                        {
-                            c.Declaration("font-size", "12px");
-                        });
-                    }).Build();
-
-            }
+            yield return new Rule(new Selector("p a"), DeclarationSet.Create(
+                new Declaration("font-size", "12px")));
         }
 
         [Test]
@@ -35,7 +26,7 @@ namespace SassSharp.Tests
         {
             var renderer = new CssRenderer();
 
-            var css = renderer.Render(SampleSassTree);
+            var css = renderer.Render(sampleRules());
 
             Assert.That(css, Is.EqualTo("p{color:red;font-weight:bold;}p a{font-size:12px;}"));
         }

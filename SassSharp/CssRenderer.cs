@@ -11,15 +11,13 @@ namespace SassSharp
     {
         public CssRenderer()
         {
-
         }
 
-        public string Render(SassSyntaxTree ast)
+        public string Render(IEnumerable<Rule> rules)
         {
             StringBuilder sb = new StringBuilder();
-            CssRuleEmitter t = new CssRuleEmitter();
 
-            foreach(var rule in t.EmitRules(ast))
+            foreach(var rule in rules)
             {
                 sb.Append(rule.Selector);
                 sb.Append('{');

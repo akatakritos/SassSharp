@@ -24,8 +24,8 @@ namespace SassSharp.Tests
                 new Token(TokenType.CloseBrace, "}")
             };
 
-            var builder = new AstBuilder(tokenStream);
-            var ast = builder.Build().Children.First();
+            var builder = new AstBuilder();
+            var ast = builder.Build(tokenStream).Children.First();
 
             Assert.That(ast.Selector, Is.EqualTo(new Selector("p")));
             Assert.That(ast.Declarations.Count(), Is.EqualTo(1));

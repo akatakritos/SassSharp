@@ -7,7 +7,6 @@ namespace SassSharp.Ast
 {
     public class AstBuilder
     {
-        private IEnumerable<Token> tokens;
         private Stack<Token> tokenStack;
         private Stack<NodeBuilder> nodeStack;
 
@@ -16,15 +15,14 @@ namespace SassSharp.Ast
             get { return nodeStack.Peek(); }
         }
 
-        public AstBuilder(IEnumerable<Token> tokens)
+        public AstBuilder()
         {
-            this.tokens = tokens;
             this.tokenStack = new Stack<Token>();
             this.nodeStack = new Stack<NodeBuilder>();
             this.nodeStack.Push(new NodeBuilder("")); //root node
         }
 
-        public SassSyntaxTree Build()
+        public SassSyntaxTree Build(IEnumerable<Token> tokens)
         {
             foreach (var token in tokens)
             {

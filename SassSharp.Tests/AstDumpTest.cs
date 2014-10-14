@@ -30,7 +30,6 @@ namespace SassSharp.Tests
             }).Build();
 
             var tree = AstDump.Dump(ast);
-            Console.WriteLine(tree);
             Assert.That(tree, Is.EqualTo(
 @"AST
 |-- Rule: 'p'

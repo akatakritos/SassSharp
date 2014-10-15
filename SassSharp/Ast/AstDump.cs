@@ -22,7 +22,7 @@ namespace SassSharp.Ast
         }
 
         private static void dumpNode(StringBuilder sb, 
-            Node n, string prefix = "", bool isLastLine = false)
+            RuleNode n, string prefix = "", bool isLastLine = false)
         {
             sb.Append(prefix).AppendFormat("{0}-- Rule: '{1}'", isLastLine ? '`' : '|', n.Selector.Value).AppendLine();
             sb.Append(prefix).AppendFormat("{0}   |-- Declarations", isLastLine ? ' ' : '|').AppendLine();

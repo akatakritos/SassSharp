@@ -8,10 +8,10 @@ namespace SassSharp.Ast
 {
     public class FluentAstBuilder
     {
-        private IList<Node> nodes;
+        private IList<RuleNode> nodes;
         public FluentAstBuilder()
         {
-            nodes = new List<Node>();
+            nodes = new List<RuleNode>();
         }
 
         public FluentAstBuilder Node(string selector, Action<FluentNodeBuilder> setup)
@@ -29,9 +29,9 @@ namespace SassSharp.Ast
         public class FluentNodeBuilder
         {
             private IList<Declaration> declarations;
-            private IList<Node> children;
+            private IList<RuleNode> children;
 
-            public FluentNodeBuilder(IList<Declaration> declarations, IList<Node> children)
+            public FluentNodeBuilder(IList<Declaration> declarations, IList<RuleNode> children)
             {
                 this.declarations = declarations;
                 this.children = children;
@@ -47,15 +47,15 @@ namespace SassSharp.Ast
                 children.Add(FluentNodeBuilder.CreateNode(selector, setup));
             }
 
-            public static Node CreateNode(string selector, Action<FluentNodeBuilder> setup)
+            public static RuleNode CreateNode(string selector, Action<FluentNodeBuilder> setup)
             {
                 var declarations = new List<Declaration>();
-                var children = new List<Node>();
+                var children = new List<RuleNode>();
                 var builder = new FluentNodeBuilder(declarations, children);
 
                 setup(builder);
 
-                return Ast.Node.Create(selector, DeclarationSet.FromList(declarations), children);
+                return Ast.RuleNode.Create(selector, DeclarationSet.FromList(declarations), children);
             }
         }
     }

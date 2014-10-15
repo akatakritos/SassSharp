@@ -14,12 +14,12 @@ namespace SassSharp
             return emit(ast.Children);
         }
 
-        private IEnumerable<Rule> emit(IEnumerable<Node> nodes)
+        private IEnumerable<Rule> emit(IEnumerable<RuleNode> nodes)
         {
             return nodes.SelectMany((node) => emit(node));
         }
 
-        private IEnumerable<Rule> emit(Node node)
+        private IEnumerable<Rule> emit(RuleNode node)
         {
             if (node.Declarations.Any())
                 yield return new Rule(node.Selector, node.Declarations);

@@ -9,13 +9,13 @@ namespace SassSharp.Ast
     public class SassSyntaxTree
     {
 
-        public SassSyntaxTree(IEnumerable<Node> children)
+        public SassSyntaxTree(IEnumerable<RuleNode> children)
         {
             this.Children = children;
         }
-        public IEnumerable<Node> Children { get; private set; }
+        public IEnumerable<RuleNode> Children { get; private set; }
 
-        public static SassSyntaxTree Create(params Node[] nodes)
+        public static SassSyntaxTree Create(params RuleNode[] nodes)
         {
             return new SassSyntaxTree(nodes);
         }

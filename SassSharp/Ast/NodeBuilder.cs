@@ -8,14 +8,14 @@ namespace SassSharp.Ast
     public class NodeBuilder
     {
         private List<Declaration> declarations;
-        private List<Node> children;
+        private List<RuleNode> children;
         private string selector;
 
         public NodeBuilder(string selector)
         {
             this.selector = selector;
             this.declarations = new List<Declaration>();
-            this.children = new List<Node>();
+            this.children = new List<RuleNode>();
         }
 
         public void AddDeclaration(Declaration item)
@@ -23,14 +23,14 @@ namespace SassSharp.Ast
             declarations.Add(item);
         }
 
-        public void AddChild(Node child)
+        public void AddChild(RuleNode child)
         {
             children.Add(child);
         }
 
-        public Node ToNode()
+        public RuleNode ToNode()
         {
-            var node = Node.Create(this.selector,
+            var node = RuleNode.Create(this.selector,
                            DeclarationSet.FromList(this.declarations),
                            this.children);
             return node;

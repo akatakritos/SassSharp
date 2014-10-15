@@ -59,6 +59,7 @@
     <Compile Include="CssRuleEmitter.cs" />
     <Compile Include="Ast\AstBuilder.cs" />
     <Compile Include="Ast\NodeBuilder.cs" />
+    <Compile Include="Ast\FluentAstBuilder2.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

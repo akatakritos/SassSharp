@@ -7,59 +7,108 @@ using System.Threading.Tasks;
 
 namespace SassSharp.Ast
 {
+    public class SyntaxException : Exception
+    {
+        public SyntaxException(Token t)
+            : base(string.Format("Unexpected token {0}", t))
+        {}
+    }
+
     public class SassSyntaxTreeBuilder
     {
-         private Stack<Token> tokenStack;
-        private Stack<NodeBuilder> nodeStack;
+        private Stack<Token> tokenStack;
+        private IEnumerator<Token> tokenEnumerator;
 
-        private NodeBuilder CurrentNode
-        {
-            get { return nodeStack.Peek(); }
-        }
-
-        public SassSyntaxTreeBuilder()
+        public SassSyntaxTreeBuilder(IEnumerable<Token> tokens)
         {
             this.tokenStack = new Stack<Token>();
-            this.nodeStack = new Stack<NodeBuilder>();
-            this.nodeStack.Push(new NodeBuilder("")); //root node
+            this.tokenEnumerator = tokens.GetEnumerator();
         }
 
-        public SassSyntaxTree2 Build(IEnumerable<Token> tokens)
+        private Token? nextToken()
         {
-            foreach (var token in tokens)
+            var moved = this.tokenEnumerator.MoveNext();
+            if (moved)
+                return tokenEnumerator.Current;
+            else
+                return null;
+        }
+
+        private void pushToken(Token t)
+        {
+            Console.WriteLine("+" + t);
+            this.tokenStack.Push(t);
+        }
+
+        private Token popToken()
+        {
+            var t = this.tokenStack.Pop();
+            Console.WriteLine("-" + t);
+            return t;
+        }
+
+        public SassSyntaxTree2 Build()
+        {
+            RootNode root = parseRoot();
+
+            return new SassSyntaxTree2(root);
+        }
+
+        RootNode parseRoot()
+        {
+            var children = new List<Node>();
+            Token? next;
+            while ((next = nextToken()) != null)
             {
-                //Console.WriteLine(token);
+                var token = next.Value;
+                pushToken(token);
+
                 if (token.Type == TokenType.OpenBrace)
                 {
-                    var selector = tokenStack.Pop();
-
-                    continue;
+                    children.Add(parseSassNode());
                 }
+                else
+                {
+                }
+            }
+
+            return new RootNode(children);
+        }
+
+        SassNode parseSassNode()
+        {
+            popToken(); //open brace
+            var selector = popToken();
+            SelectorNode sel = new SelectorNode(selector.Value);
+            SassContainerNode container = parseContainerNode();
+            return new SassNode(sel, container);
+        }
+
+        SassContainerNode parseContainerNode()
+        {
+            var children = new List<Node>();
+            Token? next;
+            while ((next = nextToken()) != null)
+            {
+                var token = next.Value;
+                this.tokenStack.Push(token);
 
                 if (token.Type == TokenType.SemiColon)
-                {
-                    var value = tokenStack.Pop().Value;
-                    tokenStack.Pop(); // colon
-                    var property = tokenStack.Pop().Value;
-
-                    CurrentNode.AddDeclaration(new Declaration(property, value));
-                    continue;
-                }
-
-                if (token.Type == TokenType.CloseBrace)
-                {
-                    var child = nodeStack.Pop();
-                    CurrentNode.AddChild(child.ToNode());
-                    continue;
-                }
-
-                tokenStack.Push(token);
-
+                    children.Add(parseDeclarationNode());
 
             }
 
-            var rootNode = CurrentNode.ToNode();
-            return new SassSyntaxTree2(rootNode);
+            return new SassContainerNode(children);
+        }
+
+        DeclarationNode parseDeclarationNode()
+        {
+            this.tokenStack.Pop(); //semicolon
+            var value = this.tokenStack.Pop();
+            this.tokenStack.Pop(); //colon
+            var property = this.tokenStack.Pop();
+
+            return new DeclarationNode(property.Value, value.Value);
         }
 
     }

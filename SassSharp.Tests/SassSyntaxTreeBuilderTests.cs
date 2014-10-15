@@ -26,8 +26,8 @@ namespace SassSharp.Tests
                 new Token(TokenType.CloseBrace, "}")
             };
 
-            var builder = new SassSyntaxTreeBuilder();
-            var root = builder.Build(tokenStream).Root.Children.First();
+            var builder = new SassSyntaxTreeBuilder(tokenStream);
+            var root = builder.Build().Root.Children.First();
 
             Assert.That(root, Is.TypeOf<SassNode>());
 

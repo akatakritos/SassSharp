@@ -64,12 +64,7 @@ namespace SassSharp.Ast
                 pushToken(token);
 
                 if (token.Type == TokenType.OpenBrace)
-                {
                     children.Add(parseSassNode());
-                }
-                else
-                {
-                }
             }
 
             return new RootNode(children);
@@ -91,10 +86,16 @@ namespace SassSharp.Ast
             while ((next = nextToken()) != null)
             {
                 var token = next.Value;
-                this.tokenStack.Push(token);
+                pushToken(token);
 
                 if (token.Type == TokenType.SemiColon)
                     children.Add(parseDeclarationNode());
+
+                if (token.Type == TokenType.OpenBrace)
+                    children.Add(parseSassNode());
+
+                if (token.Type == TokenType.CloseBrace)
+                    break;
 
             }
 
@@ -103,10 +104,10 @@ namespace SassSharp.Ast
 
         DeclarationNode parseDeclarationNode()
         {
-            this.tokenStack.Pop(); //semicolon
-            var value = this.tokenStack.Pop();
-            this.tokenStack.Pop(); //colon
-            var property = this.tokenStack.Pop();
+            popToken(); //semicolon
+            var value = popToken();
+            popToken(); //colon
+            var property = popToken();
 
             return new DeclarationNode(property.Value, value.Value);
         }

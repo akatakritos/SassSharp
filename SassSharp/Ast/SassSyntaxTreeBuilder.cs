@@ -36,14 +36,12 @@ namespace SassSharp.Ast
 
         private void pushToken(Token t)
         {
-            Console.WriteLine("+" + t);
             this.tokenStack.Push(t);
         }
 
         private Token popToken()
         {
             var t = this.tokenStack.Pop();
-            Console.WriteLine("-" + t);
             return t;
         }
 

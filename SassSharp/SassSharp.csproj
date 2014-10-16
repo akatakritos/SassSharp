@@ -39,12 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ast\AstDump.cs" />
-    <Compile Include="Ast\FluentAstBuilder.cs" />
     <Compile Include="Ast\INodeVisitor.cs" />
     <Compile Include="Ast\Nodes.cs" />
-    <Compile Include="Ast\RuleNode.cs" />
-    <Compile Include="Ast\SassSyntaxTree.cs" />
     <Compile Include="Ast\SassSyntaxTree2.cs" />
     <Compile Include="Ast\SassSyntaxTreeBuilder.cs" />
     <Compile Include="Ast\SassSyntaxTreeDumper.cs" />
@@ -59,9 +55,6 @@
     <Compile Include="Tokens\Token.cs" />
     <Compile Include="Tokens\Tokenizer.cs" />
     <Compile Include="Tokens\TokenizerException.cs" />
-    <Compile Include="CssRuleEmitter.cs" />
-    <Compile Include="Ast\AstBuilder.cs" />
-    <Compile Include="Ast\NodeBuilder.cs" />
     <Compile Include="Ast\FluentAstBuilder2.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -39,10 +39,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Ast\AstDump.cs" />
-    <Compile Include="Ast\FluentAstBuilder.cs" />
-    <Compile Include="Ast\Node.cs" />
-    <Compile Include="Ast\SassSyntaxTree.cs" />
+    <Compile Include="Ast\INodeVisitor.cs" />
+    <Compile Include="Ast\Nodes.cs" />
+    <Compile Include="Ast\SyntaxTree.cs" />
+    <Compile Include="Ast\SyntaxTreeBuilder.cs" />
+    <Compile Include="Ast\SyntaxTreeDumper.cs" />
     <Compile Include="CssRenderer.cs" />
     <Compile Include="DeclarationSet.cs" />
     <Compile Include="HashHelper.cs" />
@@ -54,11 +55,11 @@
     <Compile Include="Tokens\Token.cs" />
     <Compile Include="Tokens\Tokenizer.cs" />
     <Compile Include="Tokens\TokenizerException.cs" />
-    <Compile Include="CssRuleEmitter.cs" />
-    <Compile Include="Ast\AstBuilder.cs" />
-    <Compile Include="Ast\NodeBuilder.cs" />
+    <Compile Include="Ast\FluentAstBuilder2.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="AstCompiler.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -21,6 +21,9 @@ namespace SassSharp
             if (this.Value.StartsWith("&"))
                 return new Selector(parent.Value + this.Value.Substring(1));
 
+            if (parent.Value == null)
+                return this;
+
             return new Selector(parent.Value + " " + this.Value);
         }
 

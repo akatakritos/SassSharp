@@ -9,7 +9,7 @@ using SassSharp.Ast;
 namespace SassSharp.Tests
 {
     [TestFixture]
-    public class CssRendererTest
+    public class CssRendererTests
     {
         private IEnumerable<Rule> sampleRules()
         {

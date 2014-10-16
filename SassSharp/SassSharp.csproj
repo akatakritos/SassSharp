@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Ast\AstDump.cs" />
     <Compile Include="Ast\FluentAstBuilder.cs" />
+    <Compile Include="Ast\INodeVisitor.cs" />
     <Compile Include="Ast\RuleNode.cs" />
     <Compile Include="Ast\SassSyntaxTree.cs" />
     <Compile Include="Ast\SassSyntaxTree2.cs" />

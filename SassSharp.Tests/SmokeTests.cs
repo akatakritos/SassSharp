@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace SassSharp.Tests
 {
     [TestFixture]
-    public class SmokeTest
+    public class SmokeTests
     {
         [Test]
         public void TestRendersSimpleSass()

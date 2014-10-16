@@ -22,7 +22,7 @@ namespace SassSharp.Ast
             return this;
         }
 
-        public SassSyntaxTree2 Build()
+        public SassSyntaxTree2 ToTree()
         {
             return new SassSyntaxTree2(new RootNode(children));
         }

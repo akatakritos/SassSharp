@@ -19,7 +19,7 @@ namespace SassSharp.Tests
                         {
                             a.Declaration("width", "120px");
                         });
-                }).Build();
+                }).ToTree();
 
         }
     }

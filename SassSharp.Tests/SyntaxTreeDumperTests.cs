@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace SassSharp.Tests
 {
     [TestFixture]
-    public class SassSyntaxTreeDumperTests
+    public class SyntaxTreeDumperTests
     {
         [Test]
         public void TestDumpsTheTree()
@@ -17,7 +17,7 @@ namespace SassSharp.Tests
             var ast = createTree();
             var expected = createExpected();
 
-            var s = SassSyntaxTreeDumper.Dump(ast);
+            var s = SyntaxTreeDumper.Dump(ast);
 
             Assert.That(s, Is.EqualTo(expected));
         }

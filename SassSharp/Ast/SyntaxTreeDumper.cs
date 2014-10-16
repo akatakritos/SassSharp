@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SassSharp.Ast
 {
-    public static class SassSyntaxTreeDumper
+    public static class SyntaxTreeDumper
     {
         public static string Dump(SyntaxTree ast)
         {

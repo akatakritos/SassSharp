@@ -43,6 +43,7 @@
     <Compile Include="Ast\FluentAstBuilder.cs" />
     <Compile Include="Ast\RuleNode.cs" />
     <Compile Include="Ast\SassSyntaxTree.cs" />
+    <Compile Include="Ast\SassSyntaxTree2.cs" />
     <Compile Include="CssRenderer.cs" />
     <Compile Include="DeclarationSet.cs" />
     <Compile Include="HashHelper.cs" />

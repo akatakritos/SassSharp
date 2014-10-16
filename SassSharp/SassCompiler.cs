@@ -13,11 +13,14 @@ namespace SassSharp
         public string Compile(string sass)
         {
             var tokenizer = new Tokenizer();
-            var builder = new AstBuilder();
-            var ruleEmitter = new CssRuleEmitter();
+            var builder = new SassSyntaxTreeBuilder(tokenizer.Tokenize(sass));
+            var compiler = new AstCompiler();
             var render = new CssRenderer();
 
-            return render.Render(ruleEmitter.EmitRules(builder.Build(tokenizer.Tokenize(sass))));
+            var ast = builder.Build();
+            Console.WriteLine(SassSyntaxTreeDumper.Dump(ast));
+
+            return render.Render(compiler.Compile(ast));
         }
     }
 }

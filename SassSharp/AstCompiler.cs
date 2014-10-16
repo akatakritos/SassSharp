@@ -99,7 +99,9 @@ namespace SassSharp
                     });
                 }
 
-                emit(p.RuleBuilder.ToRule());
+                var rule = p.RuleBuilder.ToRule();
+                if(rule.Declarations.Any())
+                    emit(rule);
 
                 return null;
             }

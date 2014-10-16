@@ -122,8 +122,19 @@ namespace SassSharp.Tests
             Assert.That(declarations1[0], Is.EqualTo(new Declaration("margin", "0")));
 
             Assert.That(declarations2[0], Is.EqualTo(new Declaration("font-weight", "bold")));
+        }
 
-            
+        [Test]
+        public void TestSassNodeWithoutDeclarationsDoesntGetYielded()
+        {
+            var ast = new FluentAstBuilder2().SassNode("a", a =>
+            {
+            }).ToTree();
+
+            var compiler = new AstCompiler();
+
+            var results = compiler.Compile(ast);
+            Assert.That(results.Count(), Is.EqualTo(0));
         }
     }
 }

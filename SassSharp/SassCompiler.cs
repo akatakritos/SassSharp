@@ -13,7 +13,7 @@ namespace SassSharp
         public string Compile(string sass)
         {
             var tokenizer = new Tokenizer();
-            var builder = new SassSyntaxTreeBuilder(tokenizer.Tokenize(sass));
+            var builder = new SyntaxTreeBuilder(tokenizer.Tokenize(sass));
             var compiler = new AstCompiler();
             var render = new CssRenderer();
 

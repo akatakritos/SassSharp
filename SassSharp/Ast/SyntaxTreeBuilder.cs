@@ -14,12 +14,12 @@ namespace SassSharp.Ast
         {}
     }
 
-    public class SassSyntaxTreeBuilder
+    public class SyntaxTreeBuilder
     {
         private Stack<Token> tokenStack;
         private IEnumerator<Token> tokenEnumerator;
 
-        public SassSyntaxTreeBuilder(IEnumerable<Token> tokens)
+        public SyntaxTreeBuilder(IEnumerable<Token> tokens)
         {
             this.tokenStack = new Stack<Token>();
             this.tokenEnumerator = tokens.GetEnumerator();

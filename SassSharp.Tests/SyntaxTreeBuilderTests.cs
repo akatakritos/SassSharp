@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace SassSharp.Tests
 {
     [TestFixture]
-    public class SassSyntaxTreeBuilderTests
+    public class SyntaxTreeBuilderTests
     {
         [Test]
         public void TestBuildsSimpleTree()
@@ -26,7 +26,7 @@ namespace SassSharp.Tests
                 new Token(TokenType.CloseBrace, "}")
             };
 
-            var builder = new SassSyntaxTreeBuilder(tokenStream);
+            var builder = new SyntaxTreeBuilder(tokenStream);
             var root = builder.Build().Root.Children.First();
 
             Assert.That(root, Is.TypeOf<SassNode>());
@@ -60,7 +60,7 @@ namespace SassSharp.Tests
                 new Token(TokenType.CloseBrace, "}")
             };
 
-            var builder = new SassSyntaxTreeBuilder(tokenStream);
+            var builder = new SyntaxTreeBuilder(tokenStream);
             var root = builder.Build().Root.Children.First();
 
             Assert.That(root, Is.TypeOf<SassNode>());

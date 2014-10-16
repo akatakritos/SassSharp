@@ -9,7 +9,6 @@ namespace SassSharp.Ast
     public interface INodeVisitor<R, P>
     {
         R Visit(RootNode node, P p);
-        R Visit(RuleNode node, P p);
         R Visit(SelectorNode node, P p);
         R Visit(SassNode node, P p);
         R Visit(SassContainerNode node, P p);
@@ -180,9 +179,10 @@ namespace SassSharp.Ast
             };
         }
 
+        //this is temporary, this whole class is going away
         public override R Accept<R, P>(INodeVisitor<R, P> visitor, P p)
         {
-            return visitor.Visit(this, p);
+            return visitor.Visit(new RootNode(null), p);
         }
     }
 }

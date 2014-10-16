@@ -48,6 +48,7 @@
     <Compile Include="AstDumpTest.cs" />
     <Compile Include="CssRendererTest.cs" />
     <Compile Include="CssRuleEmitterTests.cs" />
+    <Compile Include="AstCompilerTests.cs" />
     <Compile Include="FluentAstBuilderTests.cs" />
     <Compile Include="RuleNodeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

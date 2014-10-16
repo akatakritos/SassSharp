@@ -49,7 +49,9 @@
     <Compile Include="CssRendererTest.cs" />
     <Compile Include="CssRuleEmitterTests.cs" />
     <Compile Include="FluentAstBuilderTests.cs" />
+    <Compile Include="RuleNodeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SassSyntaxTreeBuilderTests.cs" />
     <Compile Include="SassVisitorTests.cs" />
     <Compile Include="SmokeTest.cs" />
     <Compile Include="SmokeTests.cs" />

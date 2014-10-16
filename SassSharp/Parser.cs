@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SassSharp.Ast;
 
-namespace SassSharp.Ast
+namespace SassSharp
 {
     public class SyntaxException : Exception
     {

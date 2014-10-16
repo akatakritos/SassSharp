@@ -42,7 +42,7 @@
     <Compile Include="Ast\INodeVisitor.cs" />
     <Compile Include="Ast\Nodes.cs" />
     <Compile Include="Ast\SyntaxTree.cs" />
-    <Compile Include="Ast\SyntaxTreeBuilder.cs" />
+    <Compile Include="Parser.cs" />
     <Compile Include="Ast\SyntaxTreeDumper.cs" />
     <Compile Include="CssRenderer.cs" />
     <Compile Include="DeclarationSet.cs" />

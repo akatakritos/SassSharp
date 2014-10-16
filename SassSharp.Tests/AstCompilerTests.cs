@@ -13,7 +13,7 @@ namespace SassSharp.Tests
     {
         private SyntaxTree simpleAst()
         {
-            return new FluentAstBuilder2()
+            return new FluentAstBuilder()
                 .SassNode("a", a =>
                 {
                     a.Declaration("color", "red");
@@ -23,7 +23,7 @@ namespace SassSharp.Tests
 
         private SyntaxTree complexAst()
         {
-            return new FluentAstBuilder2()
+            return new FluentAstBuilder()
                 .SassNode("div", d =>
                 {
                     d.Declaration("font-size", "12px");
@@ -127,7 +127,7 @@ namespace SassSharp.Tests
         [Test]
         public void TestSassNodeWithoutDeclarationsDoesntGetYielded()
         {
-            var ast = new FluentAstBuilder2().SassNode("a", a =>
+            var ast = new FluentAstBuilder().SassNode("a", a =>
             {
             }).ToTree();
 

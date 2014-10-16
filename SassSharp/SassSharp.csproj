@@ -55,7 +55,7 @@
     <Compile Include="Tokens\Token.cs" />
     <Compile Include="Tokens\Tokenizer.cs" />
     <Compile Include="Tokens\TokenizerException.cs" />
-    <Compile Include="Ast\FluentAstBuilder2.cs" />
+    <Compile Include="Ast\FluentAstBuilder.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AstCompiler.cs" />

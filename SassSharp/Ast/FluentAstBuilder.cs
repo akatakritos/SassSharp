@@ -7,14 +7,14 @@ using System.Linq;
 
 namespace SassSharp.Ast
 {
-    public class FluentAstBuilder2
+    public class FluentAstBuilder
     {
         private List<Node> children = new List<Node>();
-        public FluentAstBuilder2()
+        public FluentAstBuilder()
         {
         }
 
-        public FluentAstBuilder2 SassNode(string selector, Action<FluentSassNodeBuilder> build)
+        public FluentAstBuilder SassNode(string selector, Action<FluentSassNodeBuilder> build)
         {
             var f = new FluentSassNodeBuilder(selector);
             build(f);

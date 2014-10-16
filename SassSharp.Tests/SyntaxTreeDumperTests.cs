@@ -24,7 +24,7 @@ namespace SassSharp.Tests
 
         public SyntaxTree createTree()
         {
-            return new FluentAstBuilder2().SassNode("p", p =>
+            return new FluentAstBuilder().SassNode("p", p =>
             {
                 p.Declaration("color", "red");
                 p.Declaration("width", "100px");

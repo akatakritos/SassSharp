@@ -11,7 +11,7 @@ namespace SassSharp.Tests
     [TestFixture]
     public class AstCompilerTests
     {
-        private SassSyntaxTree2 simpleAst()
+        private SyntaxTree simpleAst()
         {
             return new FluentAstBuilder2()
                 .SassNode("a", a =>
@@ -21,7 +21,7 @@ namespace SassSharp.Tests
                 }).ToTree();
         }
 
-        private SassSyntaxTree2 complexAst()
+        private SyntaxTree complexAst()
         {
             return new FluentAstBuilder2()
                 .SassNode("div", d =>

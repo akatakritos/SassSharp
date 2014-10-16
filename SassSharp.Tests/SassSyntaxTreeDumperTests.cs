@@ -22,7 +22,7 @@ namespace SassSharp.Tests
             Assert.That(s, Is.EqualTo(expected));
         }
 
-        public SassSyntaxTree2 createTree()
+        public SyntaxTree createTree()
         {
             return new FluentAstBuilder2().SassNode("p", p =>
             {

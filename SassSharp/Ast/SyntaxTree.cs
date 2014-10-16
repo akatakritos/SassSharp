@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace SassSharp.Ast
 {
-    public class SassSyntaxTree2
+    public class SyntaxTree
     {
         public RootNode Root { get; private set; }
 
-        public SassSyntaxTree2(RootNode root)
+        public SyntaxTree(RootNode root)
         {
             this.Root = root;
         }

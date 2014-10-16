@@ -9,7 +9,7 @@ namespace SassSharp
 {
     public class AstCompiler
     {
-        public IEnumerable<Rule> Compile(SassSyntaxTree2 ast)
+        public IEnumerable<Rule> Compile(SyntaxTree ast)
         {
             var rules = new List<Rule>();
 

@@ -45,11 +45,11 @@ namespace SassSharp.Ast
             return t;
         }
 
-        public SassSyntaxTree2 Build()
+        public SyntaxTree Build()
         {
             RootNode root = parseRoot();
 
-            return new SassSyntaxTree2(root);
+            return new SyntaxTree(root);
         }
 
         RootNode parseRoot()

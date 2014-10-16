@@ -41,7 +41,7 @@
   <ItemGroup>
     <Compile Include="Ast\INodeVisitor.cs" />
     <Compile Include="Ast\Nodes.cs" />
-    <Compile Include="Ast\SassSyntaxTree2.cs" />
+    <Compile Include="Ast\SyntaxTree.cs" />
     <Compile Include="Ast\SassSyntaxTreeBuilder.cs" />
     <Compile Include="Ast\SassSyntaxTreeDumper.cs" />
     <Compile Include="CssRenderer.cs" />

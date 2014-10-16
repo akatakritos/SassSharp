@@ -8,7 +8,7 @@ namespace SassSharp.Ast
 {
     public static class SassSyntaxTreeDumper
     {
-        public static string Dump(SassSyntaxTree2 ast)
+        public static string Dump(SyntaxTree ast)
         {
             StringBuilder sb = new StringBuilder();
             var visitor = new SassSyntaxTreeDumperVisitor();

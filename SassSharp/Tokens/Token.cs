@@ -40,15 +40,4 @@ namespace SassSharp.Tokens
             return string.Format("[Token Type={0}, Value='{1}']", Type, Value);
         }
     }
-
-    public enum TokenType
-    {
-        Ignore,
-        OpenBrace,
-        Property,
-        Colon,
-        Identifier,
-        SemiColon,
-        CloseBrace,
-    }
 }

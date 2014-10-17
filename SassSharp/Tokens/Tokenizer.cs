@@ -9,25 +9,24 @@ namespace SassSharp.Tokens
 {
     public class Tokenizer
     {
-        public IEnumerable<Token> Tokenize(string input)
+        public IEnumerable<Token> Tokenize(IEnumerable<char> input)
         {
             return tokenize(input);
         }
 
-        private IEnumerable<Token> tokenize(string input)
+        private IEnumerable<Token> tokenize(IEnumerable<char> input)
         {
-            int start = 0;
             IState currentState = new WhitespaceState();
+            StringBuilder buffer = new StringBuilder(25);
 
-            for (var i = 0; i < input.Length; i++)
+            foreach(char c in input)
             {
-                char c = input[i];
                 IState nextState = null;
 
                 if ((nextState = currentState.GetNext(c)) != null)
                 {
                     var type = currentState.GetTokenType();
-                    var value = input.Substring(start, i - start);
+                    var value = readTokenFromBuffer(buffer);
 
                     //Console.WriteLine("{0} : '{1}'", type, value);
 
@@ -37,15 +36,22 @@ namespace SassSharp.Tokens
                     }
 
                     currentState = nextState;
-                    start = i;
                 }
 
+                buffer.Append(c);
             }
 
             var type1 = currentState.GetTokenType();
-            var value1 = input.Substring(start, input.Length - start);
+            var value1 = readTokenFromBuffer(buffer);
             yield return new Token(type1, value1);
 
+        }
+
+        static string readTokenFromBuffer(StringBuilder buffer)
+        {
+            var token = buffer.ToString();
+            buffer.Clear();
+            return token;
         }
     }
 

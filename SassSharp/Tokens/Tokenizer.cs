@@ -18,9 +18,13 @@ namespace SassSharp.Tokens
         {
             IState currentState = new WhitespaceState();
             StringBuilder buffer = new StringBuilder(25);
+            StreamPosition position = new StreamPosition();
+            int currentTokenStartPosition = 0;
 
             foreach(char c in input)
             {
+                position.Advance(c);
+
                 IState nextState = null;
 
                 if ((nextState = currentState.GetNext(c)) != null)
@@ -32,9 +36,10 @@ namespace SassSharp.Tokens
 
                     if (type != TokenType.Ignore)
                     {
-                        yield return new Token(type, value);
+                        yield return new Token(type, value, position.Line, currentTokenStartPosition);
                     }
 
+                    currentTokenStartPosition = position.CurrentColumn;
                     currentState = nextState;
                 }
 
@@ -43,7 +48,7 @@ namespace SassSharp.Tokens
 
             var type1 = currentState.GetTokenType();
             var value1 = readTokenFromBuffer(buffer);
-            yield return new Token(type1, value1);
+            yield return new Token(type1, value1, position.Line, currentTokenStartPosition);
 
         }
 
@@ -52,6 +57,33 @@ namespace SassSharp.Tokens
             var token = buffer.ToString();
             buffer.Clear();
             return token;
+        }
+
+        private class StreamPosition
+        {
+            public int Line { get; private set; }
+            public int CurrentColumn { get; private set; }
+
+            public StreamPosition()
+            {
+                Line = 1;
+                CurrentColumn = 0;
+            }
+
+            public void Advance(char c)
+            {
+                if (c == '\n')
+                    this.newLine();
+
+                CurrentColumn++;
+                
+            }
+
+            private void newLine()
+            {
+                Line++;
+                CurrentColumn = 0;
+            }
         }
     }
 

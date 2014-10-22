@@ -19,5 +19,18 @@ namespace SassSharp
                 return hash;
             }
         }
+
+        internal static int Hash<T1, T2, T3, T4>(T1 a, T2 b, T3 c, T4 d)
+        {
+            unchecked
+            {
+                int hash = 17;
+                hash = hash * 23 + a.GetHashCode();
+                hash = hash * 23 + b.GetHashCode();
+                hash = hash * 23 + c.GetHashCode();
+                hash = hash * 23 + d.GetHashCode();
+                return hash;
+            }
+        }
     }
 }

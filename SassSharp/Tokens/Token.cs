@@ -10,17 +10,32 @@ namespace SassSharp.Tokens
     {
         public TokenType Type { get; private set; }
         public string Value { get; private set; }
+        public int Line { get; private set; }
+        public int Column { get; private set; }
+
 
         public Token(TokenType type, string value)
-            : this()
+            : this(type, value, default(int), default(int))
         {
             this.Type = type;
             this.Value = value;
         }
 
+        public Token(TokenType type, string value, int line, int col)
+            : this()
+        {
+            this.Type = type;
+            this.Value = value;
+            this.Line = line;
+            this.Column = col;
+        }
+
         public bool Equals(Token other)
         {
-            return this.Type == other.Type && this.Value == other.Value;
+            return this.Type == other.Type &&
+                this.Value == other.Value &&
+                this.Line == other.Line &&
+                this.Column == other.Column;
         }
 
         public override bool Equals(object other)
@@ -32,12 +47,14 @@ namespace SassSharp.Tokens
 
         public override int GetHashCode()
         {
-            return HashHelper.Hash(Type, Value);
+            return HashHelper.Hash(Type, Value, Line, Column);
         }
 
         public override string ToString()
         {
-            return string.Format("[Token Type={0}, Value='{1}']", Type, Value);
+            return string.Format("[Token Type={0}, Value='{1}', Line='{2}', Column='{3}']",
+                Type, Value, Line, Column);
         }
     }
+
 }

@@ -18,7 +18,6 @@ namespace SassSharp
             var render = new CssRenderer();
 
             var ast = builder.Build();
-            Console.WriteLine(SyntaxTreeDumper.Dump(ast));
 
             return render.Render(compiler.Compile(ast));
         }

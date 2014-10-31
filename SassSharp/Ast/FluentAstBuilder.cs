@@ -26,6 +26,12 @@ namespace SassSharp.Ast
         {
             return new SyntaxTree(new RootNode(children));
         }
+
+        public FluentAstBuilder AtCommand(AtCommandType command, string parameter)
+        {
+            children.Add(new AtCommandNode(command, parameter));
+            return this;
+        }
     }
 
     public class FluentSassNodeBuilder

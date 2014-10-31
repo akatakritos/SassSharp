@@ -43,12 +43,14 @@
     <Compile Include="Ast\INodeVisitor.cs" />
     <Compile Include="Ast\Nodes.cs" />
     <Compile Include="Ast\SyntaxTree.cs" />
+    <Compile Include="CompilatonContext.cs" />
     <Compile Include="FileEnumerator.cs" />
     <Compile Include="Parser.cs" />
     <Compile Include="Ast\SyntaxTreeDumper.cs" />
     <Compile Include="CssRenderer.cs" />
     <Compile Include="DeclarationSet.cs" />
     <Compile Include="HashHelper.cs" />
+    <Compile Include="Partial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Declaration.cs" />
     <Compile Include="Rule.cs" />

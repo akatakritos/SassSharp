@@ -59,7 +59,7 @@
     <Compile Include="Tokens\TokenizerException.cs" />
     <Compile Include="Ast\FluentAstBuilder.cs" />
     <Compile Include="Tokens\TokenType.cs" />
-    <Compile Include="Visitors\NopVisitor.cs" />
+    <Compile Include="Visitors\NoopVisitor.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AstCompiler.cs" />

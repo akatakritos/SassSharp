@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SassSharp.Visitors
 {
-    internal class NopVisitor<R,P> : INodeVisitor<R,P>
+    public class NopVisitor<R,P> : INodeVisitor<R,P>
     {
         public virtual R Visit(RootNode node, P p)
         {

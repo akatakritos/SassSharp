@@ -130,4 +130,21 @@ namespace SassSharp.Ast
             return visitor.Visit(this, p);
         }
     }
+
+    public class AtCommandNode : Node
+    {
+        public AtCommandType Command { get; private set; }
+        public string Parameter { get; private set; }
+
+        public AtCommandNode(AtCommandType command, string parameter)
+        {
+            Command = command;
+            Parameter = parameter;
+        }
+
+        public override R Accept<R, P>(INodeVisitor<R, P> visitor, P p)
+        {
+            return visitor.Visit(this, p);
+        }
+    }
 }

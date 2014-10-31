@@ -15,5 +15,6 @@ namespace SassSharp.Ast
         R Visit(DeclarationNode node, P p);
         R Visit(PropertyNode node, P p);
         R Visit(ValueNode node, P p);
+        R Visit(AtCommandNode node, P p);
     }
 }

@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ast\AtCommandType.cs" />
     <Compile Include="Ast\INodeVisitor.cs" />
     <Compile Include="Ast\Nodes.cs" />
     <Compile Include="Ast\SyntaxTree.cs" />

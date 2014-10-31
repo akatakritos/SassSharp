@@ -134,6 +134,14 @@ namespace SassSharp.Ast
                     .AppendLine();
             }
 
+            public StringBuilder Visit(AtCommandNode node, SassTreeDumperParams p)
+            {
+                return p.Builder
+                    .Append(p.Prefix)
+                    .AppendFormat("{0}-- AtCommand Type={1}, Parameter={2}", junction(p.IsLast), node.Command, node.Parameter)
+                    .AppendLine();
+            }
+
             public StringBuilder Visit(ValueNode node, SassTreeDumperParams p)
             {
                 return p.Builder

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SassSharp.Ast;
+using SassSharp.Visitors;
 
 namespace SassSharp
 {
@@ -50,7 +51,7 @@ namespace SassSharp
             }
         }
 
-        class CssVisitor : INodeVisitor<string, CssVisitorParams>
+        class CssVisitor : NopVisitor<string, CssVisitorParams>
         {
             private Action<Rule> onRuleEmitted;
             public CssVisitor(Action<Rule> onRuleEmitted)
@@ -63,7 +64,7 @@ namespace SassSharp
                 onRuleEmitted(rule);
             }
 
-            public string Visit(RootNode node, CssVisitorParams p)
+            public override string Visit(RootNode node, CssVisitorParams p)
             {
                 foreach (var n in node.Children)
                     n.Accept(this, new CssVisitorParams());
@@ -71,7 +72,7 @@ namespace SassSharp
                 return null;
             }
 
-            public string Visit(SassNode node, CssVisitorParams p)
+            public override string Visit(SassNode node, CssVisitorParams p)
             {
                 var selector = new Selector(node.Selector.Accept(this, p));
                 node.Container.Accept(this, new CssVisitorParams
@@ -83,12 +84,12 @@ namespace SassSharp
                 return null;
             }
 
-            public string Visit(SelectorNode node, CssVisitorParams p)
+            public override string Visit(SelectorNode node, CssVisitorParams p)
             {
                 return node.Selector.Value;
             }
 
-            public string Visit(SassContainerNode node, CssVisitorParams p)
+            public override string Visit(SassContainerNode node, CssVisitorParams p)
             {
                 foreach(var n in node.Children)
                 {
@@ -106,7 +107,7 @@ namespace SassSharp
                 return null;
             }
 
-            public string Visit(DeclarationNode node, CssVisitorParams p)
+            public override string Visit(DeclarationNode node, CssVisitorParams p)
             {
                 var property = node.Property.Accept(this, p);
                 var value = node.Value.Accept(this, p);
@@ -116,12 +117,12 @@ namespace SassSharp
                 return null;
             }
 
-            public string Visit(PropertyNode node, CssVisitorParams p)
+            public override string Visit(PropertyNode node, CssVisitorParams p)
             {
                 return node.Name;
             }
 
-            public string Visit(ValueNode node, CssVisitorParams p)
+            public override string Visit(ValueNode node, CssVisitorParams p)
             {
                 return node.Value;
             }
